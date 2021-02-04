@@ -1,0 +1,31 @@
+version: '3.8'
+
+volumes:
+  docker-volume:
+
+services:
+  web:
+    image: nginx:1.18
+    ports:
+      - '8000:80'
+    depends_on:
+      - app
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./himatubusi:/var/www/html/himatubusi
+  app:
+    build: ./docker/php
+    volumes:
+      - ./himatubusi:/var/www/html/himatubusi
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: himatubusi
+      MYSQL_USER: user
+      MYSQL_PASSWORD: sfk0105sfk
+      MYSQL_ROOT_PASSWORD: root
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - docker-volume:/var/lib/mysql
