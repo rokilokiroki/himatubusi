@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts">
-    import { ref } from "vue";
-    export default {
+    import { defineComponent,ref } from "vue";
+    export default defineComponent({
         setup() {
             const message = ref("Hello Laravel Vue 3");
 
@@ -29,5 +29,5 @@
         mounted() {
             console.log('Component mounted.')
         }
-    }
+    })
 </script>
