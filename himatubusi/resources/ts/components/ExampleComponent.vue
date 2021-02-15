@@ -1,33 +1,35 @@
 <template>
-    <div class="container">
-        <youtube :video-id="videoId" ref="youtube"></youtube>
-        <!-- <button @click="playVideo">play</button> -->
-    </div>
+    <YouTube
+        :src="src"
+        @ready="onReady"
+        ref="youtube" />
+
 </template>
 
 <script lang="ts">
-    import { defineComponent,ref,onMounted,computed, SetupContext } from "vue";
+    import { defineComponent,ref,onMounted,SetupContext } from "vue";
+    import YouTube from 'vue3-youtube'
     export default defineComponent({
+        components: {
+            YouTube
+        },
         setup(context:SetupContext) {
-            // const message = ref("Hello Laravel Vue 3");
-            const videoId = ref('lG0Ys-2d4MA');
-            const youtube = ref(null);
-            const playVideo = () => {
-                // player.playVideo()
-                console.log(player.value)
-            }
-            const player = computed({
-                get: () => {
-                    return youtube.player.value
-                },
-                set: () => {}
-            })
-            playVideo()
+            const videoId = 'lG0Ys-2d4MA';
+            const url = "https://www.youtube.com/watch?v=" + videoId
+            const src = ref(url)
+            const youtube = ref<InstanceType<typeof YouTube>>()// 1: 型を指定
 
+            onMounted(() => {
+                if (!youtube.value) return // 型から undefined をなくす
+            })
+            const onReady = () => {
+                youtube.value?.playVideo()
+            }
 
             return {
-              videoId,
-            //   playVideo
+              src,
+              youtube,
+              onReady
             };
         },
 

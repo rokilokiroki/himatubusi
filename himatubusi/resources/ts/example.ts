@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
 import ExampleComponent from './components/ExampleComponent.vue'
-import VueYoutube from 'vue-youtube'
+// import YouTube from 'vue3-youtube'
 
 createApp({
     components:{
         ExampleComponent,
-        VueYoutube
+        // YouTube
     }
 }).mount('#app')
