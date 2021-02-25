@@ -17,20 +17,21 @@
         setup(context:SetupContext) {
             const created = async() => {
                 const lists = await axios.get('/youtube')
-                ids.value = lists.data.map((v: { id: { videoId: string; }; }) => {
+                const videoIds = lists.data.map((v: { id: { videoId: string; }; }) => {
                     return v.id.videoId
-                }).join()
+                })
+                src.value = videoIds.shift()
+                playlist.value = videoIds.join()
             }
             created()
             const videoId = 'lG0Ys-2d4MA';
             // const url = "https://www.youtube.com/watch?v=" + videoId +'?autoplay=1'
-            // const src = ref(url)
-            const ids = ref<string[]>([])
+            const src = ref("")
+            const playlist = ref<string[]>([])
             const youtube = ref<InstanceType<typeof YouTube>>()// 1: 型を指定
             const playerVars = reactive({
                     autoplay: 1,
-                    controls: 0,
-                    playlist: ids.value
+                    playlist: playlist.value
             });
             onMounted(() => {
                 if (!youtube.value) return // 型から undefined をなくす
@@ -40,7 +41,6 @@
               playerVars,
               src,
               youtube,
-              urls
             };
         },
 
