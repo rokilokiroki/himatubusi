@@ -24,6 +24,7 @@
         "vue-property-decorator": "^9.1.2"
     },
     "dependencies": {
+        "uikit": "^3.6.18-dev.df8658aa0",
         "vue3-youtube": "^0.1.4"
     }
 }
