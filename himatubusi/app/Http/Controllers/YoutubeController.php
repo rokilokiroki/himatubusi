@@ -29,8 +29,9 @@ class YoutubeController extends Controller
     {
         $params['q'] = "嵐 バラエティ";
         $params['type'] = 'video';
-        $params['maxResults'] = 10;
+        $params['maxResults'] = 50;
         $params['order'] = 'date';
+        $params['videoDuration'] = 'long';
         try {
             $searchResponse = $this->youtube->search->listSearch('snippet', $params);
         } catch (Google_Service_Exception $e) {

@@ -1,6 +1,12 @@
-<body>
-        <div id="app" class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-            <example-component></example-component>
-        </div>
-</body>
-<script src="{{ mix('/js/example.js') }}"></script>
+<!DOCTYPE html>
+<html lang="ja">
+    <meta charset="UTF-8">
+    <title>暇つぶし</title>
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css">
+    <body>
+            <div id="app">
+                <example-component></example-component>
+            </div>
+    </body>
+    <script src="{{ mix('/js/example.js') }}"></script>
+</html>
